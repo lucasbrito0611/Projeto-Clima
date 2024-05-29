@@ -1,4 +1,4 @@
-const apiKey = 'b86a90b91f8e8d76d3fdb0b24fe39cea'
+const apiKey = process.env.API_KEY
 
 export async function fetchCityId(cityName) {
     try {
