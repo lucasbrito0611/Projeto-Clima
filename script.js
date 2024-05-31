@@ -1,6 +1,6 @@
 import { fetchCityId, fetchCityData } from './api.js';
 
-const divTeste = document.getElementById('teste')
+const todayContainer = document.getElementById('todayContainer')
 const cityInput = document.getElementById('cityInput')
 
 let apiDataNow = null
@@ -39,26 +39,22 @@ function showCityData() {
 
     let forecast = apiDataForecast.list
     
-    let forecastString = forecast.map(object => {
-        const date = new Date(object.dt_txt)
-        const formattedDate = date.toLocaleDateString('pt-BR') + ' ' + date.toLocaleTimeString('pt-BR')
+    // let forecastString = forecast.map(object => {
+    //     const date = new Date(object.dt_txt)
+    //     const formattedDate = date.toLocaleDateString('pt-BR') + ' ' + date.toLocaleTimeString('pt-BR')
 
-        const temperatureForecast = object.main.temp - 273.15
+    //     const temperatureForecast = object.main.temp - 273.15
 
-        return `Data: ${formattedDate}, Temperatura: ${temperatureForecast.toFixed(1)}°C`
-    }).join('<br>')
+    //     return `Data: ${formattedDate}, Temperatura: ${temperatureForecast.toFixed(1)}°C`
+    // }).join('<br>')
 
-    divTeste.innerHTML = `
+    todayContainer.innerHTML = `
     Cidade: ${apiDataForecast.city.name}<br>
     País: ${apiDataForecast.city.country}<br>
     Horário: ${formattedHour}<br>
     Última atualização: ${lastUpdate}<br>
-    Temperatura: ${temperature.toFixed(1)}°C<br>
-    Sensação Térmica: ${sensation.toFixed(1)}°C<br>
-    Previsão: <br>
-    ${forecastString}
-    
-    `
+    Temperatura: ${Math.round(temperature)}°C<br>
+    Sensação Térmica: ${Math.round(sensation)}°C<br>`
 }
 
 function searchCity(event) {

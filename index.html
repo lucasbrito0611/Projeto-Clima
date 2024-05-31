@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clima</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="">
-        <label for="cityInput">Digite o nome da cidade:</label>
-        <input type="text" id="cityInput">
-    </form>
+    <main>
+        <div id="container">
+            <form id="cityForm">
+                <input type="text" id="cityInput" placeholder="Pesquise uma cidade">
+            </form>
+            
+            <div id="todayContainer"></div>
 
-    <div id="teste"></div>
+        </div>
+    </main>
 
     <script type="module" src="script.js"></script>
 </body>
