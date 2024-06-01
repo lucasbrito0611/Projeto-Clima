@@ -5,15 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clima</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./imgs/favicon.png" type="image/x-icon">
 </head>
 <body>
     <main>
         <div id="container">
-            <form id="cityForm">
-                <input type="text" id="cityInput" placeholder="Pesquise uma cidade">
+            <form>
+                <input type="text" id="cityInput" placeholder="Digite uma cidade e aperte Enter">
             </form>
             
-            <div id="todayContainer"></div>
+            <section id="todayContainer">
+                <div id="upperInfo">
+                    <div id="skyInfo">
+                        <img id="weatherIcon" src="" alt="Weather Icon">
+                        <p></p>
+                    </div>
+                    <div id="localInfo">
+                        <div>
+                            <img src="imgs/map.png" alt="Map placeholder">
+                            <span id="city"></span>
+                        </div> 
+                        <p>Hoje, <span id="localDate"></span></p>
+                        <p id="localTime"></p>
+                        <p id="lastUpdate_p">Última atualização: <span id="lastUpdate"></span></p>
+                    </div>
+                </div>
+            </section>
 
         </div>
     </main>

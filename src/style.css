@@ -6,8 +6,8 @@
 }
 
 :root {
-    --primary-color: #8e87fa;
-    --secunday-color: #6d67d0;
+    --primary-color: rgb(73, 150, 250);
+    --secunday-color: #3128d3;
     --terciary-color: #302f32;
     
 }
@@ -36,13 +36,6 @@ main {
     gap: 2rem;
 }
 
-#todayContainer {
-    background-color: var(--secunday-color);
-    color: white;
-    width: 90%;
-    border-radius: 10px;
-}
-
 #cityInput {
     width: 300px;
     height: 40px;
@@ -50,6 +43,49 @@ main {
     outline: none;
     border-radius: 5px;
     border: none;
-    margin-top: 2rem;
+    margin-top: 1rem;
+}
 
+#todayContainer {
+    display: none;
+    background-color: var(--secunday-color);
+    color: white;
+    width: 90%;
+    padding: .5rem;
+    border-radius: 10px;
+}
+
+#upperInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5rem;
+}
+
+#skyInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & img {
+        width: 8rem;
+    }
+    & p {
+        font-weight: bold;
+        font-size: 17px;
+    }
+}
+
+#localInfo {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    font-size: 1.3rem;
+}
+
+#hour {
+    font-size: 2rem;
+}
+
+#lastUpdate_p {
+    font-size: .8rem;
 }
