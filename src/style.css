@@ -66,6 +66,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     & img {
         width: 8rem;
     }
@@ -88,4 +89,29 @@ main {
 
 #lastUpdate_p {
     font-size: .8rem;
+}
+
+#mainInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    & div {
+        display: flex;
+    }
+}
+
+#currentTemp_container {
+    font-weight: 700;
+    & span {
+        font-size: 5rem;
+    }
+    & p {
+        font-size: 2rem;
+    }
+}
+
+#minAndmax_container {
+    gap: 15px;
 }
