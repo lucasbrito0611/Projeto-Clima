@@ -11,6 +11,7 @@ const lastUpdate_txt = document.getElementById('lastUpdate')
 const currentTemp_txt = document.getElementById('currentTemp')
 const minTemp_txt = document.getElementById('minTemp')
 const maxTemp_txt = document.getElementById('maxTemp')
+const divTeste = document.getElementById('teste')
 
 
 let apiDataNow = null
@@ -42,34 +43,6 @@ function formatTime(timezone) {
     return currentCityTime
 }
 
-// function showCityData() {
-//     let temperature = apiDataNow.main.temp - 273.15
-//     let sensation = apiDataNow.main.feels_like - 273.15
-//     let hour = apiDataNow.dt
-//     let cityTimezone = apiDataForecast.city.timezone
-//     let formattedHour = formatHour(hour, cityTimezone).toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})
-//     let lastUpdate = new Date(apiDataNow.dt * 1000).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-
-//     let forecast = apiDataForecast.list
-    
-//     let forecastString = forecast.map(object => {
-//         const date = new Date(object.dt_txt)
-//         const formattedDate = date.toLocaleDateString('pt-BR') + ' ' + date.toLocaleTimeString('pt-BR')
-
-//         const temperatureForecast = object.main.temp - 273.15
-
-//         return `Data: ${formattedDate}, Temperatura: ${temperatureForecast.toFixed(1)}°C`
-//     }).join('<br>')
-
-//     todayContainer.innerHTML = `
-//     Local: ${apiDataNow.name}, ${apiDataNow.sys.country}<br>
-    
-//     Horário: ${formattedHour}<br>
-//     Última atualização: ${lastUpdate}<br>
-//     Temperatura: ${Math.round(temperature)}°C<br>
-//     Sensação Térmica: ${Math.round(sensation)}°C<br>`
-// }
-
 function apiData() {
     const skyNow = apiDataNow.weather[0].description
     const icon = apiDataNow.weather[0].icon
@@ -84,8 +57,26 @@ function apiData() {
     const formattedLastUpdate = new Date(lastUpdate * 1000).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 
     const currentTemp = Math.round(apiDataNow.main.temp - 273.15)
-    const minTemp = Math.round(apiDataNow.main.temp_min - 273.15)
-    const maxTemp = Math.round(apiDataNow.main.temp_max - 273.15)
+    let minTemp = Math.round(apiDataNow.main.temp_min - 273.15)
+    let maxTemp = Math.round(apiDataNow.main.temp_max - 273.15)
+
+    let forecastList = apiDataForecast.list
+    const forecastToday = []
+
+    forecastList.forEach((forecast) => {
+        const forecastDate = new Date(forecast.dt_txt)
+        const formattedDate = forecastDate.toLocaleDateString('pt-BR')
+
+        if (formattedDate === localDate) {
+            forecastToday.push(Math.round(forecast.main.temp - 273.15))
+            
+        }
+    })
+
+    if (forecastToday.length > 0) {
+        minTemp = Math.min(...forecastToday)
+        maxTemp = Math.max(...forecastToday)
+    }
 
     todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp)
 }

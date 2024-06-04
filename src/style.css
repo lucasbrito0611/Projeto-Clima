@@ -48,11 +48,12 @@ main {
 
 #todayContainer {
     display: none;
-    background-color: var(--secunday-color);
+    background-image: linear-gradient(to bottom, var(--secunday-color), rgb(36, 37, 105));
     color: white;
     width: 90%;
     padding: .5rem;
     border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.603);
 }
 
 #upperInfo {
@@ -81,6 +82,10 @@ main {
     flex-direction: column;
     gap: .5rem;
     font-size: 1.3rem;
+}
+
+#localTime {
+    font-size: 2rem;
 }
 
 #hour {
