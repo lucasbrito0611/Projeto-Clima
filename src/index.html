@@ -14,41 +14,68 @@
                 <input type="text" id="cityInput" placeholder="Digite uma cidade e aperte Enter">
             </form>
             
-            <section id="todayContainer">
-                <div id="upperInfo">
-                    <div id="skyInfo">
-                        <img id="weatherIcon" src="" alt="Weather Icon">
-                        <p></p>
-                    </div>
-                    <div id="localInfo">
-                        <div>
-                            <img src="imgs/map.png" alt="Map placeholder">
-                            <span id="city"></span>
-                        </div> 
-                        <p>Hoje, <span id="localDate"></span></p>
-                        <p id="localTime"></p>
-                        <p id="lastUpdate_p">Última atualização: <span id="lastUpdate"></span></p>
-                    </div>
-                </div>
-                <div id="mainInfo">
-                    <div id="currentTemp_container">
-                        <span id="currentTemp"></span>
-                        <p>°C</p>
-                    </div>
-                    <div id="minAndmax_container">
-                        <div>
-                            <p>Máx.:</p>
-                            <span id="maxTemp"></span>
+            <div id="infoContainer">
+                <section id="todayContainer">
+                    <div id="upperInfo">
+                        <div id="skyInfo">
+                            <img id="weatherIcon" src="" alt="Weather Icon">
+                            <p></p>
                         </div>
-                        <div>
-                            <p>Mín.:</p>
-                            <span id="minTemp"></span>
+                        <div id="localInfo">
+                            <div>
+                                <img src="imgs/map.png" alt="Map placeholder">
+                                <span id="city"></span>
+                            </div> 
+                            <p>Hoje, <span id="localDate"></span></p>
+                            <p id="localTime"></p>
+                            <p id="lastUpdate_p">Última atualização: <span id="lastUpdate"></span></p>
                         </div>
                     </div>
-                </div>
-            </section>
 
-            <div id="teste"></div>
+                    <div id="mainInfo">
+                        <div id="currentTemp_container">
+                            <span id="currentTemp"></span>
+                            <p>°C</p>
+                        </div>
+                        <div id="minAndmax_container">
+                            <div>
+                                <p>Máx.:</p>
+                                <span id="maxTemp"></span>
+                            </div>
+                            <div>
+                                <p>Mín.:</p>
+                                <span id="minTemp"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="lowInfo">  
+                        <div id="sensationContainer" class="lowInfoCard">
+                            <p class="lowInfoTitle">Sensação</p>
+                            <p id="sensation"></p>
+                        </div>
+                        <div id="humidityContainer" class="lowInfoCard">
+                            <p class="lowInfoTitle">Umidade</p>
+                            <p id="humidity"></p>
+                        </div>
+                        <div id="sensation" class="lowInfoCard">
+                            
+                        </div>
+                        <div id="sensation" class="lowInfoCard">
+                            
+                        </div>
+                        <div id="sensation" class="lowInfoCard">
+                            
+                        </div>
+                        <div id="sensation" class="lowInfoCard">
+                            
+                        </div>
+                    </div>
+                </section>
+
+                <section id="forecastContainer"></section>
+            </div>
+
 
         </div>
     </main>

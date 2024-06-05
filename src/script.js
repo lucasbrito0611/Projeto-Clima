@@ -1,6 +1,6 @@
 import { fetchCityId, fetchCityData } from './api.js';
 
-const todayContainer = document.getElementById('todayContainer')
+const infoContainer = document.getElementById('infoContainer')
 const cityInput = document.getElementById('cityInput')
 const skyWeather = document.querySelector('#skyInfo p')
 const weatherIcon = document.getElementById('weatherIcon')
@@ -11,7 +11,8 @@ const lastUpdate_txt = document.getElementById('lastUpdate')
 const currentTemp_txt = document.getElementById('currentTemp')
 const minTemp_txt = document.getElementById('minTemp')
 const maxTemp_txt = document.getElementById('maxTemp')
-const divTeste = document.getElementById('teste')
+const sensation_txt = document.getElementById('sensation')
+const humidity_txt = document.getElementById('humidity')
 
 
 let apiDataNow = null
@@ -19,20 +20,26 @@ let apiDataForecast = null
 
 async function catchApiData(cityName) {
     if (!cityName) {
-        console.error('Nome da cidade não pode estar vazio')
+        alert('Nome da cidade não pode estar vazio')
         return
     }
+    
+    try {
+        const dataNow = await fetchCityId(cityName)
+        const dataForecast = await fetchCityData(dataNow.id)
 
-    const dataNow = await fetchCityId(cityName)
-    const dataForecast = await fetchCityData(dataNow.id)
+        console.log(dataNow)
+        console.log(dataForecast)
+            
+        apiDataNow = dataNow
+        apiDataForecast = dataForecast
 
-    console.log(dataNow)
-    console.log(dataForecast)
-        
-    apiDataNow = dataNow
-    apiDataForecast = dataForecast
+        apiData()
 
-    apiData()
+        infoContainer.style.display = 'block'
+    } catch (error) {
+        alert('Não foi possível obter os dados da cidade. Tente novamente.')
+    }
 }
 
 function formatTime(timezone) {
@@ -56,6 +63,9 @@ function apiData() {
     const localDate = formatTime(cityTimezone).toLocaleDateString()
     const formattedLastUpdate = new Date(lastUpdate * 1000).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 
+    const sensation = Math.round(apiDataNow.main.feels_like - 273.15)
+    const humidity = apiDataNow.main.humidity
+
     const currentTemp = Math.round(apiDataNow.main.temp - 273.15)
     let minTemp = Math.round(apiDataNow.main.temp_min - 273.15)
     let maxTemp = Math.round(apiDataNow.main.temp_max - 273.15)
@@ -78,10 +88,10 @@ function apiData() {
         maxTemp = Math.max(...forecastToday)
     }
 
-    todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp)
+    todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp, sensation, humidity)
 }
 
-function todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp) {
+function todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp, sensation, humidity) {
     skyWeather.textContent = skyNow.charAt(0).toUpperCase() + skyNow.slice(1)
     weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`
 
@@ -93,14 +103,16 @@ function todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, fo
     currentTemp_txt.textContent = currentTemp
     maxTemp_txt.textContent = maxTemp + '°C'
     minTemp_txt.textContent = minTemp + '°C'
+
+    sensation_txt.textContent = sensation + '°C'
+    humidity_txt.textContent = humidity + '%'
 }
 
 function searchCity(event) {
     if (event.key === 'Enter') {
         event.preventDefault()
         catchApiData(cityInput.value.trim())
-        todayContainer.style.display = 'block'
-        
+
         cityInput.value = ''
     }
 }

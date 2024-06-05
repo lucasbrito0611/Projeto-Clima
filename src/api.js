@@ -6,17 +6,18 @@ export async function fetchCityId(cityName) {
          `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&lang=pt`
       );
 
-      if (!response.ok) {
+      if (!response.ok) { 
          throw new Error(
-            `Erro: ${response.status}. Please see https://openweathermap.org/faq#error${response.status} for more info.`
+            `${response.status}. Please see https://openweathermap.org/faq#error${response.status} for more info.`
          );
       }
 
       const data = await response.json();
-      return data;
+      return data
    } catch (error) {
-      console.error("Erro:", error);
-      throw error;
+      alert(error)
+      console.error(error)
+      throw error
    }
 }
 
@@ -28,14 +29,14 @@ export async function fetchCityData(cityId) {
 
       if (!response.ok) {
          throw new Error(
-            `Erro: ${response.status}. Please see https://openweathermap.org/faq#error${response.status} for more info.`
+            `${response.status}. Please see https://openweathermap.org/faq#error${response.status} for more info.`
          );
       }
 
-      const data = await response.json();
-      return data;
+      const data = await response.json()
+      return data
    } catch (error) {
-      console.error("Erro:", error);
-      throw error;
+      console.error(error)
+      throw error
    }
 }

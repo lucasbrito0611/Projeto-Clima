@@ -7,7 +7,7 @@
 
 :root {
     --primary-color: rgb(73, 150, 250);
-    --secunday-color: #3128d3;
+    --secundary-color: #2a24ad;
     --terciary-color: #302f32;
     
 }
@@ -20,7 +20,7 @@ body {
 main {
     background-color: var(--terciary-color);
     width: 90%;
-    margin-top: 8rem;
+    margin-top: 5rem;
     border-radius: 10px;
     padding: 10px;
 }
@@ -30,10 +30,12 @@ main {
     min-height: 100px;
     padding: 1rem;
     border-radius: 10px;
+}
+
+form {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 2rem;
 }
 
 #cityInput {
@@ -46,11 +48,16 @@ main {
     margin-top: 1rem;
 }
 
-#todayContainer {
+#infoContainer {
+    padding: 3rem 4rem;
     display: none;
-    background-image: linear-gradient(to bottom, var(--secunday-color), rgb(36, 37, 105));
+    margin-top: 2rem;
+}
+
+#todayContainer {
+    background-image: linear-gradient(to bottom, var(--secundary-color), rgb(36, 37, 105));
     color: white;
-    width: 90%;
+    width: 40%;
     padding: .5rem;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.603);
@@ -60,7 +67,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5rem;
+    padding: 1rem 3rem;
 }
 
 #skyInfo {
@@ -101,6 +108,8 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
     gap: 8px;
     & div {
         display: flex;
@@ -119,4 +128,27 @@ main {
 
 #minAndmax_container {
     gap: 15px;
+}
+
+#lowInfo {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.lowInfoCard {
+    background-color: rgb(46, 48, 165);
+    border: 2px solid rgb(19, 36, 95);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    padding: 10px 8px;
+}
+
+.lowInfoTitle {
+    color: rgb(151, 150, 253);
 }
