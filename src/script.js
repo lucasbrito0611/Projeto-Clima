@@ -13,7 +13,12 @@ const minTemp_txt = document.getElementById('minTemp')
 const maxTemp_txt = document.getElementById('maxTemp')
 const sensation_txt = document.getElementById('sensation')
 const humidity_txt = document.getElementById('humidity')
-
+const wind_txt = document.getElementById('wind')
+const pressure_txt = document.getElementById('pressure')
+const visibility_txt = document.getElementById('visibility')
+const clouds_txt = document.getElementById('clouds')
+const sunrise_txt = document.getElementById('sunrise')
+const sunset_txt = document.getElementById('sunset')
 
 let apiDataNow = null
 let apiDataForecast = null
@@ -59,16 +64,27 @@ function apiData() {
 
     const lastUpdate = apiDataNow.dt
     const cityTimezone = apiDataNow.timezone
-    const formattedHour = formatTime(cityTimezone).toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})
-    const localDate = formatTime(cityTimezone).toLocaleDateString()
-    const formattedLastUpdate = new Date(lastUpdate * 1000).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    const formattedHour = formatTime(cityTimezone)
+    const localDate = formatTime(cityTimezone)
+    const formattedLastUpdate = new Date(lastUpdate * 1000)
 
-    const sensation = Math.round(apiDataNow.main.feels_like - 273.15)
+    const sensation = apiDataNow.main.feels_like
     const humidity = apiDataNow.main.humidity
+    const windSpeed = apiDataNow.wind.speed
+    const windDirection = apiDataNow.wind.deg
+    const pressure = apiDataNow.main.pressure
+    const visibility = apiDataNow.visibility
+    const clouds = apiDataNow.clouds.all
 
-    const currentTemp = Math.round(apiDataNow.main.temp - 273.15)
-    let minTemp = Math.round(apiDataNow.main.temp_min - 273.15)
-    let maxTemp = Math.round(apiDataNow.main.temp_max - 273.15)
+    const sunriseUnix = new Date(apiDataNow.sys.sunrise * 1000)
+    const sunrise = new Date(sunriseUnix.getTime() + (cityTimezone * 1000))
+
+    const sunsetUnix = new Date(apiDataNow.sys.sunset * 1000)
+    const sunset = new Date(sunsetUnix.getTime() + (cityTimezone * 1000))
+
+    const currentTemp = apiDataNow.main.temp
+    let minTemp = apiDataNow.main.temp_min
+    let maxTemp = apiDataNow.main.temp_max
 
     let forecastList = apiDataForecast.list
     const forecastToday = []
@@ -78,7 +94,7 @@ function apiData() {
         const formattedDate = forecastDate.toLocaleDateString('pt-BR')
 
         if (formattedDate === localDate) {
-            forecastToday.push(Math.round(forecast.main.temp - 273.15))
+            forecastToday.push(forecast.main.temp)
             
         }
     })
@@ -88,24 +104,31 @@ function apiData() {
         maxTemp = Math.max(...forecastToday)
     }
 
-    todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp, sensation, humidity)
+    todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp, sensation, humidity, windSpeed, pressure, visibility, clouds, sunrise, sunset)
 }
 
-function todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp, sensation, humidity) {
+function todayInfo(skyNow, icon, cityName, country, formattedHour, localDate, formattedLastUpdate, currentTemp, minTemp, maxTemp, sensation, humidity, windSpeed, pressure, visibility, clouds, sunrise, sunset) {
     skyWeather.textContent = skyNow.charAt(0).toUpperCase() + skyNow.slice(1)
     weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`
 
     city.textContent = `${cityName}, ${country}`
-    localTime.textContent = formattedHour
-    localDate_txt.textContent = localDate
-    lastUpdate_txt.textContent = formattedLastUpdate
+    localTime.textContent = formattedHour.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})
+    localDate_txt.textContent = localDate.toLocaleDateString()
+    lastUpdate_txt.textContent = formattedLastUpdate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 
-    currentTemp_txt.textContent = currentTemp
-    maxTemp_txt.textContent = maxTemp + '°C'
-    minTemp_txt.textContent = minTemp + '°C'
+    currentTemp_txt.textContent = Math.round(currentTemp - 273.15)
+    maxTemp_txt.textContent = Math.round(maxTemp - 273.15) + '°C'
+    minTemp_txt.textContent = Math.round(minTemp - 273.15) + '°C'
 
-    sensation_txt.textContent = sensation + '°C'
-    humidity_txt.textContent = humidity + '%'
+    sensation_txt.textContent = Math.round(sensation - 273.15)
+    humidity_txt.textContent = humidity 
+    wind_txt.textContent = Math.round(windSpeed * 3.6)
+    pressure_txt.textContent = pressure
+    visibility_txt.textContent = (visibility / 1000).toFixed(1).replace(/\./g, ',')
+    clouds_txt.textContent = clouds
+
+    sunrise_txt.textContent = sunrise.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC'})
+    sunset_txt.textContent = sunset.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC'})
 }
 
 function searchCity(event) {
