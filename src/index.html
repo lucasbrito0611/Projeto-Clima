@@ -27,7 +27,10 @@
                                 <span id="city"></span>
                             </div> 
                             <p>Hoje, <span id="localDate"></span></p>
-                            <p id="localTime"></p>
+                            <div id="localTimeContainer">
+                                <p id="localTime"></p>
+                                <p id="gmt"></p>
+                            </div>
                             <p id="lastUpdate_p">Última atualização: <span id="lastUpdate"></span></p>
                         </div>
                     </div>
@@ -59,11 +62,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="precipitationContainer" class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Probabilidade de Precipitação</h4>
+                            <div>
+                                <div>
+                                    <span id="precipitation"></span>
+                                    <p>%</p>
+                                </div>
+                            </div>
+                        </div>
                         <div id="humidityContainer" class="lowInfoCard">
                             <h4 class="lowInfoTitle">Umidade</h4>
                             <div>
                                 <div>
                                     <span id="humidity"></span>
+                                    <p>%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cloudsContainer" class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Nuvens</h4>
+                            <div>
+                                <div>
+                                    <span id="clouds"></span>
                                     <p>%</p>
                                 </div>
                             </div>
@@ -78,7 +99,7 @@
                             </div>
                         </div>
                         <div id="pressureContainer" class="lowInfoCard">
-                            <h4 class="lowInfoTitle">Pressão Atm.</h4>
+                            <h4 class="lowInfoTitle">Pressão Atmosférica</h4>
                             <div>
                                 <div>
                                     <span id="pressure"></span>
@@ -92,15 +113,6 @@
                                 <div>
                                     <span id="visibility"></span>
                                     <p>km</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="cloudsContainer" class="lowInfoCard">
-                            <h4 class="lowInfoTitle">Nuvens</h4>
-                            <div>
-                                <div>
-                                    <span id="clouds"></span>
-                                    <p>%</p>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +135,35 @@
                     </div>
                 </section>
 
-                <section id="forecastContainer"></section>
+                <section id="forecastContainer">
+                    <div class="forecastCard">
+                        <div>
+                            <h4>Amanhã, <span id="tomorrowDate"></span></h4>
+                            <div>
+                                <div id="forecastTempContainer">
+                                    <span id="forecastTemp"></span>
+                                    <p>°C</p>
+                                </div>
+                                <div id="forecastMinAndMax">
+                                    <p>Máx.: <span id="forecastMax"></span>°C</p>
+                                    <p>Mín.: <span id="forecastMin"></span>°C</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forecastCard">
+
+                    </div>
+                    <div class="forecastCard">
+
+                    </div>
+                    <div class="forecastCard">
+
+                    </div>
+                    <div class="forecastCard">
+
+                    </div>
+                </section>
             </div>
 
 

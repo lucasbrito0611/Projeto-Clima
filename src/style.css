@@ -49,8 +49,9 @@ form {
 }
 
 #infoContainer {
-    padding: 3rem 4rem;
     display: none;
+    padding: 3rem 4rem;
+    justify-content: space-between;
     margin-top: 2rem;
 }
 
@@ -89,6 +90,13 @@ form {
     flex-direction: column;
     gap: .5rem;
     font-size: 1.3rem;
+}
+
+#localTimeContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .8rem;
 }
 
 #localTime {
@@ -169,4 +177,48 @@ form {
     color: rgb(151, 150, 253);
     font-size: 16px;
     font-weight: lighter;
+}
+
+#forecastContainer {
+    color: white;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.forecastCard {
+    background: linear-gradient(to bottom, var(--secundary-color), rgb(43, 44, 145));
+    height: 180px;
+    border-radius: 10px;
+    padding: 12px 18px;
+    display: flex;
+    & h4 {
+        font-size: 1.2rem;
+    }
+}
+
+.forecastCard > div > div {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#forecastTempContainer {
+    display: flex;
+    align-items: start;
+    & span {
+        font-size: 3rem;
+    }
+    & p {
+        font-size: 1.3rem;
+    }
+}
+
+#forecastMinAndMax {
+    display: flex;
+    font-size: 13px;
+    gap: 7px;
 }
