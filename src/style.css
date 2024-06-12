@@ -177,11 +177,12 @@ form {
     color: rgb(151, 150, 253);
     font-size: 16px;
     font-weight: lighter;
+    height: 55px;
 }
 
 #forecastContainer {
     color: white;
-    width: 800px;
+    width: 850px;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -198,12 +199,22 @@ form {
     }
 }
 
-.forecastCard > div > div {
-    height: 140px;
+.forecastLeftInfo {
+    width: 25%;
+}
+
+.forecastLeftInfo > div {
+    height: 110px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#main {
+    margin-top: 5px;
+    font-size: 1.3rem;
+    color: orange;
 }
 
 #forecastTempContainer {
@@ -221,4 +232,43 @@ form {
     display: flex;
     font-size: 13px;
     gap: 7px;
+}
+
+.forecastRightInfo {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forecastRightInfo > div {
+    background-color: rgb(46, 48, 165);
+    border: 2px solid rgb(19, 36, 95);
+    border-radius: 10px;
+    width: 110px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h4 {
+        color: rgb(151, 150, 253);
+        font-weight: lighter;
+        font-size: 1rem;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+    & div {
+        height: 70%;
+        display: flex;
+        align-items: center;
+        & div {
+            height: 35px;
+            display: flex;
+            align-items: end;
+            gap: 2px;
+            & span {
+                font-size: 2rem;
+            }
+        }
+    }
 }

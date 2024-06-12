@@ -53,15 +53,6 @@
                     </div>
 
                     <div id="lowInfo">  
-                        <div id="sensationContainer" class="lowInfoCard">
-                            <h4 class="lowInfoTitle">Sensação</h4>
-                            <div>
-                                <div>
-                                    <span id="sensation"></span>
-                                    <p>°C</p>
-                                </div>
-                            </div>
-                        </div>
                         <div id="precipitationContainer" class="lowInfoCard">
                             <h4 class="lowInfoTitle">Probabilidade de Precipitação</h4>
                             <div>
@@ -86,6 +77,15 @@
                                 <div>
                                     <span id="clouds"></span>
                                     <p>%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="sensationContainer" class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Sensação</h4>
+                            <div>
+                                <div>
+                                    <span id="sensation"></span>
+                                    <p>°C</p>
                                 </div>
                             </div>
                         </div>
@@ -137,8 +137,9 @@
 
                 <section id="forecastContainer">
                     <div class="forecastCard">
-                        <div>
+                        <div class="forecastLeftInfo">
                             <h4>Amanhã, <span id="tomorrowDate"></span></h4>
+                            <p id="main"></p>
                             <div>
                                 <div id="forecastTempContainer">
                                     <span id="forecastTemp"></span>
@@ -147,6 +148,53 @@
                                 <div id="forecastMinAndMax">
                                     <p>Máx.: <span id="forecastMax"></span>°C</p>
                                     <p>Mín.: <span id="forecastMin"></span>°C</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="forecastRightInfo">
+                            <div>
+                                <h4>Prob. de Precipitação</h4>
+                                <div>
+                                    <div>
+                                        <span id="forecastPrecipitation"></span>
+                                        <p>%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Umidade</h4>
+                                <div>
+                                    <div>
+                                        <span id="forecastHumidity"></span>
+                                        <p>%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Vento</h4>
+                                <div>
+                                    <div>
+                                        <span id="forecastWind"></span>
+                                        <p>km/h</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Sensação</h4>
+                                <div>
+                                    <div>
+                                        <span id="forecastSensation"></span>
+                                        <p>°C</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Visibilidade</h4>
+                                <div>
+                                    <div>
+                                        <span id="forecastVisibility"></span>
+                                        <p>km</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
