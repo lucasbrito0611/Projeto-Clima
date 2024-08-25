@@ -51,6 +51,7 @@ form {
 #infoContainer {
     display: none;
     padding: 3rem 4rem;
+    gap: 10rem;
     justify-content: space-between;
     margin-top: 2rem;
 }
@@ -58,20 +59,20 @@ form {
 #todayContainer {
     background: linear-gradient(to bottom, var(--secundary-color), rgb(36, 37, 105));
     color: white;
-    width: 40%;
+    width: 50%;
     padding: .5rem;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.603);
 }
 
-#upperInfo {
+.upperInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3rem;
 }
 
-#skyInfo {
+.skyInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,7 +86,7 @@ form {
     }
 }
 
-#localInfo {
+.localInfo {
     display: flex;
     flex-direction: column;
     gap: .5rem;
@@ -107,11 +108,11 @@ form {
     font-size: 2rem;
 }
 
-#lastUpdate_p {
+.lastUpdate_p {
     font-size: .8rem;
 }
 
-#mainInfo {
+.mainInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,11 +135,11 @@ form {
     }
 }
 
-#minAndmax_container {
+.minAndmax_container {
     gap: 15px;
 }
 
-#lowInfo {
+.lowInfo {
     margin-bottom: 2rem;
     display: flex;
     justify-content: space-around;
@@ -180,16 +181,16 @@ form {
     height: 55px;
 }
 
-#forecastContainer {
+#tomorrowContainer {
+    background: linear-gradient(to bottom, var(--secundary-color), rgb(36, 37, 105));
     color: white;
-    width: 850px;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    width: 50%;
+    padding: .5rem;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.603);
 }
 
 .forecastCard {
-    background: linear-gradient(to bottom, var(--secundary-color), rgb(43, 44, 145));
     height: 180px;
     border-radius: 10px;
     padding: 12px 18px;
@@ -212,9 +213,8 @@ form {
 }
 
 #main {
-    margin-top: 5px;
-    font-size: 1.3rem;
-    color: orange;
+    font-weight: bold;
+    font-size: 17px;
 }
 
 #forecastTempContainer {

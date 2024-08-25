@@ -16,12 +16,12 @@
             
             <div id="infoContainer">
                 <section id="todayContainer">
-                    <div id="upperInfo">
-                        <div id="skyInfo">
+                    <div class="upperInfo">
+                        <div class="skyInfo">
                             <img id="weatherIcon" src="" alt="Weather Icon">
                             <p></p>
                         </div>
-                        <div id="localInfo">
+                        <div class="localInfo">
                             <div>
                                 <img src="imgs/map.png" alt="Map placeholder">
                                 <span id="city"></span>
@@ -31,16 +31,16 @@
                                 <p id="localTime"></p>
                                 <p id="gmt"></p>
                             </div>
-                            <p id="lastUpdate_p">Última atualização: <span id="lastUpdate"></span></p>
+                            <p class="lastUpdate_p">Última atualização: <span id="lastUpdate"></span></p>
                         </div>
                     </div>
 
-                    <div id="mainInfo">
+                    <div class="mainInfo">
                         <div id="currentTemp_container">
                             <span id="currentTemp"></span>
                             <p>°C</p>
                         </div>
-                        <div id="minAndmax_container">
+                        <div class="minAndmax_container">
                             <div>
                                 <p>Máx.:</p>
                                 <span id="maxTemp"></span>
@@ -52,8 +52,8 @@
                         </div>
                     </div>
 
-                    <div id="lowInfo">  
-                        <div id="precipitationContainer" class="lowInfoCard">
+                    <div class="lowInfo">  
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Probabilidade de Precipitação</h4>
                             <div>
                                 <div>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="humidityContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Umidade</h4>
                             <div>
                                 <div>
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="cloudsContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Nuvens</h4>
                             <div>
                                 <div>
@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="sensationContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Sensação</h4>
                             <div>
                                 <div>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="windContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Vento</h4>
                             <div>
                                 <div>
@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="pressureContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Pressão Atmosférica</h4>
                             <div>
                                 <div>
@@ -107,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="visibilityContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Visibilidade</h4>
                             <div>
                                 <div>
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="sunriseContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Nascer do Sol</h4>
                             <div>
                                 <div>
@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="sunsetContainer" class="lowInfoCard">
+                        <div class="lowInfoCard">
                             <h4 class="lowInfoTitle">Pôr do Sol</h4>
                             <div>
                                 <div>
@@ -135,86 +135,122 @@
                     </div>
                 </section>
 
-                <section id="forecastContainer">
-                    <div class="forecastCard">
-                        <div class="forecastLeftInfo">
-                            <h4>Amanhã, <span id="tomorrowDate"></span></h4>
+                <section id="tomorrowContainer">
+                    <div class="upperInfo">
+                        <div class="skyInfo">
+                            <img id="tomorrowWeatherIcon" src="" alt="Weather Icon">
                             <p id="main"></p>
+                        </div>
+                        <div class="localInfo">
                             <div>
-                                <div id="forecastTempContainer">
-                                    <span id="forecastTemp"></span>
+                                <img src="imgs/map.png" alt="Map placeholder">
+                                <span id="tomorrowCity"></span>
+                            </div> 
+                            <p>Amanhã, <span id="tomorrowDate"></span></p>
+                            <p class="lastUpdate_p">Última atualização: <span id="tomorrowLastUpdate"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="mainInfo">
+                        <div id="currentTemp_container">
+                            <span id="tomorrowTemp"></span>
+                            <p>°C</p>
+                        </div>
+                        <div class="minAndmax_container">
+                            <div>
+                                <p>Máx.:</p>
+                                <span id="tomorrowMaxTemp"></span>
+                            </div>
+                            <div>
+                                <p>Mín.:</p>
+                                <span id="tomorrowMinTemp"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lowInfo">  
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Probabilidade de Precipitação</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowPrecipitation"></span>
+                                    <p>%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Umidade</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowHumidity"></span>
+                                    <p>%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Nuvens</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowClouds"></span>
+                                    <p>%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Sensação</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowSensation"></span>
                                     <p>°C</p>
                                 </div>
-                                <div id="forecastMinAndMax">
-                                    <p>Máx.: <span id="forecastMax"></span>°C</p>
-                                    <p>Mín.: <span id="forecastMin"></span>°C</p>
+                            </div>
+                        </div>
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Vento</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowWind"></span>
+                                    <p>km/h</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="forecastRightInfo">
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Pressão Atmosférica</h4>
                             <div>
-                                <h4>Prob. de Precipitação</h4>
                                 <div>
-                                    <div>
-                                        <span id="forecastPrecipitation"></span>
-                                        <p>%</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4>Umidade</h4>
-                                <div>
-                                    <div>
-                                        <span id="forecastHumidity"></span>
-                                        <p>%</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4>Vento</h4>
-                                <div>
-                                    <div>
-                                        <span id="forecastWind"></span>
-                                        <p>km/h</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4>Sensação</h4>
-                                <div>
-                                    <div>
-                                        <span id="forecastSensation"></span>
-                                        <p>°C</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4>Visibilidade</h4>
-                                <div>
-                                    <div>
-                                        <span id="forecastVisibility"></span>
-                                        <p>km</p>
-                                    </div>
+                                    <span id="tomorrowPressure"></span>
+                                    <p>hpa</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="forecastCard">
-
-                    </div>
-                    <div class="forecastCard">
-
-                    </div>
-                    <div class="forecastCard">
-
-                    </div>
-                    <div class="forecastCard">
-
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Visibilidade</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowVisibility"></span>
+                                    <p>km</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Nascer do Sol</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowSunrise"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lowInfoCard">
+                            <h4 class="lowInfoTitle">Pôr do Sol</h4>
+                            <div>
+                                <div>
+                                    <span id="tomorrowSunset"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
-
-
         </div>
     </main>
 

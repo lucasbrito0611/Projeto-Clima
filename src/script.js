@@ -2,7 +2,7 @@ import { fetchCityId, fetchCityData } from './api.js';
 
 const infoContainer = document.getElementById('infoContainer')
 const cityInput = document.getElementById('cityInput')
-const skyWeather = document.querySelector('#skyInfo p')
+const skyWeather = document.querySelector('.skyInfo p')
 const weatherIcon = document.getElementById('weatherIcon')
 const city = document.getElementById('city')
 const localTime_txt = document.getElementById('localTime')
@@ -21,15 +21,22 @@ const clouds_txt = document.getElementById('clouds')
 const sunrise_txt = document.getElementById('sunrise')
 const sunset_txt = document.getElementById('sunset')
 const gmt_txt = document.getElementById('gmt')
+const tomorrowWeatherIcon = document.getElementById('tomorrowWeatherIcon')
+const tomorrowCity = document.getElementById('tomorrowCity')
 const tomorrowDate_txt = document.getElementById('tomorrowDate')
-const forecastTemp_txt = document.getElementById('forecastTemp')
-const forecastMax_txt = document.getElementById('forecastMax')
-const forecastMin_txt = document.getElementById('forecastMin')
-const forecastPrecipitation_txt = document.getElementById('forecastPrecipitation')
-const forecastHumidity_txt = document.getElementById('forecastHumidity')
-const forecastWind_txt = document.getElementById('forecastWind')
-const forecastSensation_txt = document.getElementById('forecastSensation')
-const forecastVisibility_txt = document.getElementById('forecastVisibility')
+const tomorrowLastUpdate = document.getElementById('tomorrowLastUpdate')
+const tomorrowTemp_txt = document.getElementById('tomorrowTemp')
+const tomorrowMax_txt = document.getElementById('tomorrowMaxTemp')
+const tomorrowMin_txt = document.getElementById('tomorrowMinTemp')
+const tomorrowPrecipitation = document.getElementById('tomorrowPrecipitation')
+const tomorrowHumidity = document.getElementById('tomorrowHumidity')
+const tomorrowClouds = document.getElementById('tomorrowClouds')
+const tomorrowSensation = document.getElementById('tomorrowSensation')
+const tomorrowWind = document.getElementById('tomorrowWind')
+const tomorrowPressure = document.getElementById('tomorrowPressure')
+const tomorrowVisibility = document.getElementById('tomorrowVisibility')
+const tomorrowSunrise = document.getElementById('tomorrowSunrise')
+const tomorrowSunset = document.getElementById('tomorrowSunset')
 const main_txt = document.getElementById('main')
 
 let apiDataNow = null
@@ -144,25 +151,39 @@ function apiData() {
     }
 
     const temperatures = forecastTomorrow.map(forecast => forecast.main.temp)
-    const forecastMaxTemp = Math.max(...temperatures)
-    const forecastMinTemp = Math.min(...temperatures)
+    const tomorrowMaxTemp = Math.max(...temperatures)
+    const tomorrowMinTemp = Math.min(...temperatures)
     const avgTemperature = calcAverage(temperatures)
 
-    const forecastPrecipitations = forecastTomorrow.map(forecast => forecast.pop)
-    const avgTomorrowPrecipitation = calcAverage(forecastPrecipitations)
+    const tomorrowPrecipitations = forecastTomorrow.map(forecast => forecast.pop)
+    const avgTomorrowPrecipitation = calcAverage(tomorrowPrecipitations)
 
     const tomorrowMainList = forecastTomorrow.map(forecast => forecast.weather[0].main)
+    const tomorrowIconList = forecastTomorrow.map(forecast => forecast.weather[0].icon)
 
-    let frequency = {}
+    let frequencyMain = {}
+    let frequencyIcon = {}
+
     tomorrowMainList.forEach(main => {
-        if (frequency[main]) {
-            frequency[main]++
+        if (frequencyMain[main]) {
+            frequencyMain[main]++
         } else {
-            frequency[main] = 1
+            frequencyMain[main] = 1
         }
     })
 
-    const oftenMain = Object.entries(frequency).reduce((max, value) => {
+    const oftenMain = Object.entries(frequencyMain).reduce((max, value) => {
+        return value[1] > max[1] ? value : max
+    })
+    tomorrowIconList.forEach(icon => {
+        if (frequencyIcon[icon]) {
+            frequencyIcon[icon]++
+        } else {
+            frequencyIcon[icon] = 1
+        }
+    })
+
+    const oftenIcon = Object.entries(frequencyIcon).reduce((max, value) => {
         return value[1] > max[1] ? value : max
     })
     
@@ -170,6 +191,12 @@ function apiData() {
     
     const humidityList = forecastTomorrow.map(forecast => forecast.main.humidity)
     const avgHumidity = calcAverage(humidityList)
+
+    const cloudsList = forecastTomorrow.map(forecast => forecast.clouds.all)
+    const avgClouds = calcAverage(cloudsList)
+
+    const pressuresList = forecastTomorrow.map(forecast => forecast.main.pressure)
+    const avgPressure = calcAverage(pressuresList)
 
     const windList = forecastTomorrow.map(forecast => forecast.wind.speed)
     const avgWind = calcAverage(windList)
@@ -180,8 +207,9 @@ function apiData() {
     const visibilityList = forecastTomorrow.map(forecast => forecast.visibility)
     const avgVisibility = calcAverage(visibilityList)
 
+    console.log(forecastTomorrow)
     todayInfo(skyNow, icon, cityName, country, localDate, localTime, gmt, formattedLastUpdate, currentTemp, minTemp, maxTemp, avgTodayPrecipitation, sensation, humidity, windSpeed, pressure, visibility, clouds, sunrise, sunset)
-    forecastInfo(tomorrowDate, tomorrowMain, avgTemperature, forecastMaxTemp, forecastMinTemp, avgTomorrowPrecipitation, avgHumidity, avgWind, avgSensation, avgVisibility)
+    tomorrowInfo(oftenIcon, tomorrowDate, tomorrowMain, cityName, country, formattedLastUpdate, avgTemperature, tomorrowMaxTemp, tomorrowMinTemp, avgTomorrowPrecipitation, avgHumidity, avgClouds, avgSensation, avgWind, avgPressure, avgVisibility, sunrise, sunset)
 }
 
 function todayInfo(skyNow, icon, cityName, country, localDate, localTime, gmt, formattedLastUpdate, currentTemp, minTemp, maxTemp, avgPrecipitation, sensation, humidity, windSpeed, pressure, visibility, clouds, sunrise, sunset) {
@@ -210,18 +238,27 @@ function todayInfo(skyNow, icon, cityName, country, localDate, localTime, gmt, f
     sunset_txt.textContent = sunset.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC'})
 }
 
-function forecastInfo(tomorrowDate, tomorrowMain, avgTemperature, forecastMaxTemp, forecastMinTemp, avgTomorrowPrecipitation, avgHumidity, avgWind, avgSensation, avgVisibility) {
-    tomorrowDate_txt.textContent = tomorrowDate.toLocaleDateString('pt-BR')
+function tomorrowInfo(oftenIcon, tomorrowDate, tomorrowMain, cityName, country, formattedLastUpdate, avgTemperature, tomorrowMaxTemp, tomorrowMinTemp, avgTomorrowPrecipitation, avgHumidity, avgClouds, avgSensation, avgWind, avgPressure, avgVisibility, sunrise, sunset) {
+    tomorrowWeatherIcon.src = `https://openweathermap.org/img/wn/${oftenIcon[0]}@2x.png`
     main_txt.textContent = tomorrowMain
+    
+    tomorrowCity.textContent = `${cityName}, ${country}`
+    tomorrowDate_txt.textContent = tomorrowDate.toLocaleDateString('pt-BR')
+    tomorrowLastUpdate.textContent = formattedLastUpdate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 
-    forecastTemp_txt.textContent = Math.round(avgTemperature - 273.15)
-    forecastMax_txt.textContent = Math.round(forecastMaxTemp - 273.15)
-    forecastMin_txt.textContent = Math.round(forecastMinTemp - 273.15)
-    forecastPrecipitation_txt.textContent = Math.round(avgTomorrowPrecipitation * 100)
-    forecastHumidity_txt.textContent = Math.round(avgHumidity)
-    forecastWind_txt.textContent = Math.round(avgWind * 3.6)
-    forecastSensation_txt.textContent = Math.round(avgSensation - 273.15)
-    forecastVisibility_txt.textContent = (((avgVisibility / 1000)).toFixed(1) * 1000) % 1000 === 0 ? (((avgVisibility / 1000)).toFixed(1) * 1000) / 1000 : (avgVisibility / 1000).toFixed(1).replace(/\./g, ',')
+    tomorrowTemp_txt.textContent = Math.round(avgTemperature - 273.15)
+    tomorrowMax_txt.textContent = Math.round(tomorrowMaxTemp - 273.15) + '°C'
+    tomorrowMin_txt.textContent = Math.round(tomorrowMinTemp - 273.15) + '°C'
+
+    tomorrowPrecipitation.textContent = Math.round(avgTomorrowPrecipitation * 100)
+    tomorrowHumidity.textContent = Math.round(avgHumidity)
+    tomorrowClouds.textContent = Math.round(avgClouds)
+    tomorrowSensation.textContent = Math.round(avgSensation - 273.15)
+    tomorrowWind.textContent = Math.round(avgWind * 3.6)
+    tomorrowPressure.textContent = Math.round(avgPressure)
+    tomorrowVisibility.textContent = (((avgVisibility / 1000)).toFixed(1) * 1000) % 1000 === 0 ? (((avgVisibility / 1000)).toFixed(1) * 1000) / 1000 : (avgVisibility / 1000).toFixed(1).replace(/\./g, ',')
+    tomorrowSunrise.textContent = sunrise.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC'})
+    tomorrowSunset.textContent = sunset.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC'})
 }
 
 function searchCity(event) {
